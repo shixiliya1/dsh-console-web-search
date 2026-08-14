@@ -1,0 +1,14 @@
+node_modules/
+lib/
+*.tgz
+
+.env
+.env.*
+!.env.example
+
+*.log
+pnpm-debug.log*
+npm-debug.log*
+
+.DS_Store
+Thumbs.db

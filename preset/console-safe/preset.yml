@@ -1,0 +1,3 @@
+name: Console Go 安全
+description: 标准 DSH 智能体，但用 console_web_search 替代 Console Go 保留的 web_search。
+order: 5

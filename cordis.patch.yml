@@ -1,0 +1,10 @@
+# Disable the built-in global web_search tool. The console-safe preset mounts
+# dsh-console-web-search inside the agent scope under a non-reserved name.
+- id: tool-web
+  config:
+    search: false
+    fetch: false
+
+- id: agent-presets
+  config:
+    default: console-safe
