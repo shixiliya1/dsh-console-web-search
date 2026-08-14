@@ -1,6 +1,6 @@
 {
   "name": "dsh-console-web-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH web search tool with a Console Go-safe function name.",
   "keywords": [
     "deepseek-harness",
@@ -32,10 +32,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepack": "pnpm run build"
+    "prepare": "pnpm run build"
   },
   "engines": {
-    "node": ">=20"
+    "node": "^22.19.0 || >=24.0.0"
   },
   "packageManager": "pnpm@11.21.0",
   "repository": {

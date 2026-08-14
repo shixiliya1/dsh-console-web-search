@@ -25,7 +25,7 @@ Console Go 模型
 ## 兼容性
 
 - DSH `0.1.0-rc.6`
-- Node.js 20 或更高版本
+- Node.js `^22.19.0 || >=24.0.0`
 - pnpm 11（开发和打包时需要）
 
 DSH 仍处于预览阶段。“Console Go 安全”预设基于 `0.1.0-rc.6` 的标准预设；升级 DSH 后应重新核对预设内容。
@@ -36,45 +36,33 @@ DSH 仍处于预览阶段。“Console Go 安全”预设基于 `0.1.0-rc.6` 的
 
 DSH 默认的 DeepSeek 搜索提供方需要有效的 `DEEPSEEK_API_KEY`。可以通过 DSH 的模型/凭据设置页面保存，或在启动 DSH 的环境中设置。不要把密钥写进本仓库。
 
-## 从源码安装
+## 安装
+
+发布包已经预先构建，不需要放行构建脚本：
 
 ```powershell
-git clone <你的仓库地址>
-cd dsh-console-web-search
-
-pnpm install --frozen-lockfile
-pnpm pack
+npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.1.1/dsh-console-web-search-0.1.1.tgz
 ```
 
-安装生成的压缩包：
+也可以固定到同一版本，从 GitHub 源码安装：
 
 ```powershell
-$packageDirectory = Join-Path $env:USERPROFILE '.dsh\packages'
-New-Item -ItemType Directory -Path $packageDirectory -Force | Out-Null
-Copy-Item '.\dsh-console-web-search-0.1.0.tgz' $packageDirectory
-
-npx @deepseek-ai/dsh plugin --profile web add `
-  (Join-Path $packageDirectory 'dsh-console-web-search-0.1.0.tgz')
+npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.1.1
 ```
 
-安装安全预设：
+源码安装会运行本包的 `prepare` 构建。pnpm 10 及更高版本默认阻止这一步；首次命令失败时，按照 DSH/pnpm 输出的提示，把它打印的精确包键加入该 profile 的 `pnpm-workspace.yaml` 中的 `allowBuilds`，然后重新运行同一条安装命令。
+
+把 `web` 换成 `headless`，可以安装到一次性智能体 profile。升级时，使用新版本的 Release URL 重新运行 `plugin add`。卸载命令：
 
 ```powershell
-$presetTarget = Join-Path $env:USERPROFILE '.dsh\.agent-presets\console-safe'
-if (Test-Path -LiteralPath $presetTarget) {
-  throw "预设已存在，未覆盖：$presetTarget"
-}
-
-Copy-Item '.\preset\console-safe' $presetTarget -Recurse
+npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web remove dsh-console-web-search
 ```
 
-重启 DSH，然后新建会话。会话顶部应显示“Console Go 安全”。
+如果已全局安装 DSH，上述命令开头的 `npx @deepseek-ai/dsh@0.1.0-rc.6` 可以缩写为 `dsh`。
 
-> DSH `0.1.0-rc.6` 在 Windows 上可能错误拆分包含空格的本地安装包路径。遇到这种情况，请先把 `.tgz` 放到不含空格的路径再执行安装。
+### 安装 Console Go 安全预设
 
-## 从 GitHub Release 安装
-
-从仓库的 Releases 页面下载 `dsh-console-web-search-0.1.0.tgz`，然后执行上面的“安装生成的压缩包”步骤。安装完成后，可以直接从已安装的插件中复制安全预设：
+插件安装完成后，从插件包中复制附带的安全预设：
 
 ```powershell
 $presetSource = Join-Path $env:USERPROFILE '.dsh\profiles\web\node_modules\dsh-console-web-search\preset\console-safe'
@@ -86,6 +74,8 @@ if (Test-Path -LiteralPath $presetTarget) {
 
 Copy-Item $presetSource $presetTarget -Recurse
 ```
+
+重启 DSH，然后新建会话。会话顶部应显示“Console Go 安全”。
 
 ## 使用
 

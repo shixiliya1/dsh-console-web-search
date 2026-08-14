@@ -42,21 +42,21 @@ gh repo create dsh-console-web-search `
 
 如果暂时不想公开，把 `--public` 改为 `--private`。
 
-## 4. 发布 v0.1.0 安装包
+## 4. 发布 v0.1.1 安装包
 
 ```powershell
 pnpm pack
-git tag v0.1.0
-git push origin v0.1.0
+git tag -a v0.1.1 -m "v0.1.1"
+git push origin v0.1.1
 
-gh release create v0.1.0 `
-  .\dsh-console-web-search-0.1.0.tgz `
+gh release create v0.1.1 `
+  .\dsh-console-web-search-0.1.1.tgz `
   --verify-tag `
-  --title "dsh-console-web-search v0.1.0" `
+  --title "dsh-console-web-search v0.1.1" `
   --generate-notes
 ```
 
-GitHub Release 会附带可供别人安装的 `dsh-console-web-search-0.1.0.tgz`。构建目录、依赖目录和本地压缩包已被 `.gitignore` 排除，不会进入源码提交。
+GitHub Release 会附带可供别人安装的 `dsh-console-web-search-0.1.1.tgz`。构建目录、依赖目录和本地压缩包已被 `.gitignore` 排除，不会进入源码提交。
 
 ## 后续版本
 
