@@ -1,5 +1,7 @@
 # DSH Console Web Search
 
+[中文](README.md) · [English](README.en.md) · [日本語](README.ja.md)
+
 为 DeepSeek Harness（DSH）提供一个 Console Go 可接受的网页搜索工具名。
 
 Console Go 会拒绝名为 `web_search` 的自定义函数，并返回：
