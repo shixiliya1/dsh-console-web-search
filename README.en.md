@@ -26,11 +26,11 @@ The plugin does not proxy model requests, read or save API keys, or install anot
 
 ## Compatibility
 
-- DSH `0.1.0-rc.6`
+- DSH `dsh-v0.1.3-alpha.1` built from the official source tag
 - Node.js `^22.19.0 || >=24.0.0`
 - pnpm 11 for development and packaging
 
-DSH is still in preview. The **Console Go Safe** preset is based on the standard preset in `0.1.0-rc.6`; inspect it again after upgrading DSH.
+The **Console Go Safe** preset is rebased on the standard preset in `dsh-v0.1.3-alpha.1`; it only replaces model-facing `web_search` with `console_web_search`.
 
 ## Search credentials
 
@@ -40,16 +40,16 @@ DSH's default DeepSeek search provider requires a valid `DEEPSEEK_API_KEY`. Save
 
 ## Installation
 
-The release package is prebuilt and requires no build allowlist:
+`dsh-v0.1.3-alpha.1` is not published to npm. From an official source checkout of that tag after `pnpm install`, the release package is prebuilt and requires no build allowlist:
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.1.1/dsh-console-web-search-0.1.1.tgz
+pnpm dsh plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.2.0/dsh-console-web-search-0.2.0.tgz
 ```
 
 You can also install the pinned source version from GitHub:
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.1.1
+pnpm dsh plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.2.0
 ```
 
 A source installation runs this package's `prepare` build. pnpm 10 and later block this by default. When the first command fails, add the exact package key printed by DSH/pnpm to `allowBuilds` in that profile's `pnpm-workspace.yaml`, then rerun the same command.
@@ -57,10 +57,10 @@ A source installation runs this package's `prepare` build. pnpm 10 and later blo
 Replace `web` with `headless` to install into a one-shot agent profile. To upgrade, run `plugin add` again with the newer release URL. To uninstall:
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web remove dsh-console-web-search
+pnpm dsh plugin --profile web remove dsh-console-web-search
 ```
 
-If DSH is installed globally, `npx @deepseek-ai/dsh@0.1.0-rc.6` can be shortened to `dsh`.
+Run `pnpm dsh` from the official `dsh-v0.1.3-alpha.1` source checkout.
 
 ### Install the Console Go Safe preset
 

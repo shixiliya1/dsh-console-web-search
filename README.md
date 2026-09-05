@@ -26,11 +26,11 @@ Console Go 模型
 
 ## 兼容性
 
-- DSH `0.1.0-rc.6`
+- DSH `dsh-v0.1.3-alpha.1`（官方源码 tag 构建）
 - Node.js `^22.19.0 || >=24.0.0`
 - pnpm 11（开发和打包时需要）
 
-DSH 仍处于预览阶段。“Console Go 安全”预设基于 `0.1.0-rc.6` 的标准预设；升级 DSH 后应重新核对预设内容。
+“Console Go 安全”预设已经按 `dsh-v0.1.3-alpha.1` 的标准预设重新同步；它只把模型可见的 `web_search` 替换为 `console_web_search`。
 
 ## 搜索凭据
 
@@ -40,16 +40,16 @@ DSH 默认的 DeepSeek 搜索提供方需要有效的 `DEEPSEEK_API_KEY`。可�
 
 ## 安装
 
-发布包已经预先构建，不需要放行构建脚本：
+`dsh-v0.1.3-alpha.1` 尚未发布到 npm，因此不要使用 `npx @deepseek-ai/dsh@0.1.3-alpha.1`。请先在官方源码 tag 目录完成 `pnpm install`，再执行以下命令。发布包已经预先构建，不需要放行构建脚本：
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.1.1/dsh-console-web-search-0.1.1.tgz
+pnpm dsh plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.2.0/dsh-console-web-search-0.2.0.tgz
 ```
 
 也可以固定到同一版本，从 GitHub 源码安装：
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.1.1
+pnpm dsh plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.2.0
 ```
 
 源码安装会运行本包的 `prepare` 构建。pnpm 10 及更高版本默认阻止这一步；首次命令失败时，按照 DSH/pnpm 输出的提示，把它打印的精确包键加入该 profile 的 `pnpm-workspace.yaml` 中的 `allowBuilds`，然后重新运行同一条安装命令。
@@ -57,10 +57,10 @@ npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-c
 把 `web` 换成 `headless`，可以安装到一次性智能体 profile。升级时，使用新版本的 Release URL 重新运行 `plugin add`。卸载命令：
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web remove dsh-console-web-search
+pnpm dsh plugin --profile web remove dsh-console-web-search
 ```
 
-如果已全局安装 DSH，上述命令开头的 `npx @deepseek-ai/dsh@0.1.0-rc.6` 可以缩写为 `dsh`。
+上述 `pnpm dsh` 命令必须从官方 `dsh-v0.1.3-alpha.1` 源码目录运行。
 
 ### 安装 Console Go 安全预设
 

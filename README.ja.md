@@ -26,11 +26,11 @@ Console Go モデル
 
 ## 互換性
 
-- DSH `0.1.0-rc.6`
+- 公式 source tag からビルドした DSH `dsh-v0.1.3-alpha.1`
 - Node.js `^22.19.0 || >=24.0.0`
 - 開発とパッケージングには pnpm 11
 
-DSH はまだプレビュー段階です。**Console Go Safe** preset は `0.1.0-rc.6` の標準 preset を基にしているため、DSH の更新後には内容を再確認してください。
+**Console Go Safe** preset は `dsh-v0.1.3-alpha.1` の標準 preset に同期済みで、モデル向けの `web_search` だけを `console_web_search` に置き換えます。
 
 ## 検索認証情報
 
@@ -40,16 +40,16 @@ DSH の既定 DeepSeek 検索プロバイダーには有効な `DEEPSEEK_API_KEY
 
 ## インストール
 
-Release パッケージは事前ビルド済みで、ビルド許可リストは不要です。
+`dsh-v0.1.3-alpha.1` は npm に公開されていません。公式 source tag の checkout で `pnpm install` を完了してから実行してください。Release パッケージは事前ビルド済みです。
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.1.1/dsh-console-web-search-0.1.1.tgz
+pnpm dsh plugin --profile web add https://github.com/shixiliya1/dsh-console-web-search/releases/download/v0.2.0/dsh-console-web-search-0.2.0.tgz
 ```
 
 GitHub からタグに固定したソース版もインストールできます。
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.1.1
+pnpm dsh plugin --profile web add github:shixiliya1/dsh-console-web-search#v0.2.0
 ```
 
 ソースインストールではこのパッケージの `prepare` ビルドが実行されます。pnpm 10 以降では既定でブロックされます。最初のコマンドが失敗した場合、DSH/pnpm が表示した正確なパッケージキーを、その profile の `pnpm-workspace.yaml` の `allowBuilds` に追加してから、同じコマンドを再実行してください。
@@ -57,10 +57,10 @@ npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web add github:shixiliya1/dsh-c
 一回限りの agent profile に入れる場合は `web` を `headless` に置き換えます。更新時は新しい Release URL で `plugin add` を再実行します。アンインストール:
 
 ```powershell
-npx @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile web remove dsh-console-web-search
+pnpm dsh plugin --profile web remove dsh-console-web-search
 ```
 
-DSH がグローバルにインストール済みの場合、`npx @deepseek-ai/dsh@0.1.0-rc.6` は `dsh` に短縮できます。
+`pnpm dsh` は公式 `dsh-v0.1.3-alpha.1` source checkout から実行してください。
 
 ### Console Go Safe preset のインストール
 
